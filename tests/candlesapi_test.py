@@ -1,23 +1,23 @@
 from candlesapi import candlesAPI
 import datetime
+import unittest
 
-def test_get_parameters():
-    btc_api = candlesAPI('BTC-USD')
-    parameters = btc_api.get_parameters_string(100)
-    assert parameters == 'start=100&granularity=300'
+class candlesAPI_test(unittest.TestCase):
+    def test_get_parameters(self):
+        btc_api = candlesAPI('USDT_BTC')
+        parameters = btc_api.get_parameters_string(100)
+        assert parameters == 'start=100&period=300'
 
-def test_make_url():
-    btc_api = candlesAPI('BTC-USD')
-    url = btc_api.make_url(200)
-    assert url == 'https://api.gdax.com/products/BTC-USD/candles?start=200&granularity=300'
+    def test_make_url(self):
+        btc_api = candlesAPI('USDT_BTC')
+        url = btc_api.make_url(1514764800)
+        assert url == 'https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1514764800&period=300'
 
 
-def test_get_candles():
-    btc_api = candlesAPI('BTC-USD')
-    end = datetime.datetime.now()
-    start = end - datetime.timedelta(days=20)
-    candles = btc_api.get_candles(start)
-    assert len(candles) > 5
-    #assert False
+    def test_get_candles(self):
+        btc_api = candlesAPI('USDT_BTC')
+        candles = btc_api.get_candles(20)
+        assert len(candles) > 5
 
-#test_get_candles()
+if __name__ == '__main__':
+    unittest.main()

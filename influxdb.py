@@ -9,6 +9,13 @@ class influxdb():
         self.password = password
         self.db = db
     
+    def create_database(self,db_name):
+        url = 'http://{}:{}/db'.format(self.ip, self.port)
+        params = {'u': self.user, 'p': self.password}
+        data = {'name': db_name}
+        return requests.post(url,data=json.dumps(data), params=params)
+
+    
     def write_points(self,name,points_dict):
         url = 'http://{}:{}/db/{}/series'.format(self.ip, self.port, self.db)
         params = {'u': self.user, 'p': self.password, 'time_precision': 's'}

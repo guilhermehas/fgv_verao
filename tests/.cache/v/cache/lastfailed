@@ -1,1 +1,3 @@
-{}
+{
+  "influxdb_test.py::candlesImport_test::test_createDatabase": true
+}

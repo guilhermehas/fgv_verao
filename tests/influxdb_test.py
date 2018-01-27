@@ -6,6 +6,11 @@ class candlesImport_test(unittest.TestCase):
         infDB = influxdb('localhost',8086,'root','root','poloniex')
         req = infDB.write_points('xxx',self.getPoints())
         assert req.status_code == 200
+    
+    def teste_createDatabase(self):
+        infDB = influxdb('localhost',8086,'root','root',None)
+        req = infDB.create_database('teste')
+        assert req.status_code == 201
 
     def getPoints(self):
         return [\

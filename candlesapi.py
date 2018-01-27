@@ -18,12 +18,17 @@ class candlesAPI():
         
         join_string = '&'.join(parameters)
         return join_string
+
+    def get_request(self,start):
+        start_ts = int(start.timestamp())
+        url = 'https://poloniex.com/public'
+        parameters = {'command': 'returnChartData', 'currencyPair': self.pair,
+                      'start': start_ts, 'period': self.granularity}
+        return requests.get(url, params=parameters).content.decode('utf8')
             
     def get_candles(self,deltaDays):
         start = datetime.datetime.now()-datetime.timedelta(days=deltaDays)
-        start_ts = int(start.timestamp())
-        url = self.make_url(start_ts)
-        candles_string = requests.get(url).content
+        candles_string = self.get_request(start)
         candles = simplejson.loads(candles_string)
         assert isinstance(candles,list)
         

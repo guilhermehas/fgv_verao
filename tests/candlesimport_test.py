@@ -3,7 +3,6 @@ from candlesimport import *
 
 
 class candlesImport_test(unittest.TestCase):
-
     def test_importFromPickle(self):
         ci = CandlesImport()
         candles = ci.importFromPickle('candles30.p')

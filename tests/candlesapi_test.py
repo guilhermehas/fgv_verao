@@ -1,6 +1,7 @@
 from candlesapi import candlesAPI
 import datetime
 import unittest
+import json
 
 class candlesAPI_test(unittest.TestCase):
     def test_get_parameters(self):
@@ -13,6 +14,12 @@ class candlesAPI_test(unittest.TestCase):
         url = btc_api.make_url(1514764800)
         assert url == 'https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1514764800&period=300'
 
+    def test_get_request(self):
+        btc_api = candlesAPI('USDT_BTC')
+        start = datetime.datetime.now()-datetime.timedelta(days=10)
+        json_string = btc_api.get_request(start)
+
+        [json.loads(json_string)]
 
     def test_get_candles(self):
         btc_api = candlesAPI('USDT_BTC')

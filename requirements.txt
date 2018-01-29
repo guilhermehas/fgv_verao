@@ -1,0 +1,16 @@
+requests
+pandas
+backtrader
+keras
+wget
+dask
+holoviews
+ccxt
+bt
+seaborn
+pyfolio
+bokeh
+statsmodels
+ffn
+pipenv
+jupyter_dashboards

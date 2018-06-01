@@ -5,3 +5,4 @@ This is a project from FGV to the summer course. In this project, we can see som
 - Capture the data using the notebook *data_capture.ipynb*
 - Use the notebook *data_visualization.ipynb* to visualize the data
 - Run the note *database.ipynb* to save the data in influxdb
+- Visualize it at [GitHub Pages](https://guilhermehas.github.io/fgv_verao/)
